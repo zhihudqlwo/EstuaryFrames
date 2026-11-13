@@ -1,0 +1,303 @@
+# EstuaryFrames
+
+The data-frame core mirror keeps its maintenance register alongside the original implementation and licenses.
+
+### 📝 Complete TODO List
+
+- [ ] **pandas/core/_numba/executor.py:248** - # TODO: Optimize this
+- [ ] **pandas/core/_numba/extensions.py:365** - # TODO: preserve the original class for the index
+- [ ] **pandas/core/_numba/extensions.py:451** - # TODO: Check index matching?
+- [ ] **pandas/core/algorithms.py:666** - # TODO: not quite right ... Sparse/Categorical
+- [ ] **pandas/core/algorithms.py:1635** - # TODO: require axis == 0
+- [ ] **pandas/core/algorithms.py:1645** - # TODO: can diff_2d dtype specialization troubles be fixed by defining
+- [ ] **pandas/core/apply.py:1096** - # TODO: Avoid having to change state
+- [ ] **pandas/core/apply.py:1274** - # TODO: mixed type case
+- [ ] **pandas/core/apply.py:1370** - # TODO: GH#39993 - Avoid special-casing by replacing with lambda
+- [ ] **pandas/core/apply.py:1607** - # TODO: values corrupted without the copy
+- [ ] **pandas/core/apply.py:2116** - # TODO: aggspec type: typing.Dict[str, List[AggScalar]]
+- [ ] **pandas/core/apply.py:2266** - # TODO: Can't use, because mypy doesn't like us setting __name__
+- [ ] **pandas/core/array_algos/putmask.py:79** - # TODO: this prob needs some better checking for 2D cases
+- [ ] **pandas/core/array_algos/replace.py:86** - # TODO: should use missing.mask_missing?
+- [ ] **pandas/core/arraylike.py:400** - # TODO: When we support multiple values in __finalize__, this
+- [ ] **pandas/core/arraylike.py:554** - # TODO: test cases where this doesn't hold, i.e. 2D DTA/TDA
+- [ ] **pandas/core/arrays/_mixins.py:625** - # TODO: disable for Categorical if not ordered?
+- [ ] **pandas/core/arrays/_mixins.py:637** - # TODO: technically __init__ isn't defined here.
+- [ ] **pandas/core/arrays/arrow/accessors.py:193** - # TODO: Support negative start/stop/step, ideally this would be added
+- [ ] **pandas/core/arrays/arrow/accessors.py:197** - # TODO: When adding negative step support
+- [ ] **pandas/core/arrays/arrow/array.py:165** - # TODO: Replace with pyarrow floordiv kernel.
+- [ ] **pandas/core/arrays/arrow/array.py:1033** - # TODO: Move logic in _from_sequence_of_strings into
+- [ ] **pandas/core/arrays/arrow/array.py:1094** - # TODO(infer_string) should this be large_string?
+- [ ] **pandas/core/arrays/arrow/array.py:1114** - # TODO: should be handled by pyarrow?
+- [ ] **pandas/core/arrays/arrow/array.py:1237** - # TODO: By using `zero_copy_only` it may be possible to implement this
+- [ ] **pandas/core/arrays/arrow/array.py:1552** - #  TODO: is this documented somewhere?
+- [ ] **pandas/core/arrays/arrow/array.py:1590** - # TODO: maybe complex? object?
+- [ ] **pandas/core/arrays/arrow/array.py:1869** - # TODO: remove try/except wrapper if/when pyarrow implements
+- [ ] **pandas/core/arrays/arrow/array.py:1951** - # TODO: remove try/except wrapper if/when pyarrow implements
+- [ ] **pandas/core/arrays/arrow/array.py:2305** - # TODO(ARROW-9433): Treat negative indices as NULL
+- [ ] **pandas/core/arrays/arrow/array.py:2310** - # TODO: ArrowNotImplementedError: Function fill_null has no
+- [ ] **pandas/core/arrays/arrow/array.py:2320** - # TODO(ARROW-9432): Treat negative indices as indices from the right.
+- [ ] **pandas/core/arrays/arrow/array.py:3465** - # TODO: Remove this part when pa.if_else is fixed (GH#64320)
+- [ ] **pandas/core/arrays/categorical.py:2400** - # TODO: GH#15362
+- [ ] **pandas/core/arrays/datetimelike.py:337** - # TODO: Remove Datetime & DatetimeTZ formatters.
+- [ ] **pandas/core/arrays/datetimelike.py:484** - # TODO: try to de-duplicate these, ensure identical behavior
+- [ ] **pandas/core/arrays/datetimelike.py:678** - # TODO: Could use from_sequence_of_strings if implemented
+- [ ] **pandas/core/arrays/datetimelike.py:687** - # TODO: do we need equal dtype or just comparable?
+- [ ] **pandas/core/arrays/datetimelike.py:782** - # TODO: de-duplicate with equals, validate_comparison_value
+- [ ] **pandas/core/arrays/datetimelike.py:797** - # TODO: Deprecate this case
+- [ ] **pandas/core/arrays/datetimelike.py:942** - # TODO: handle 2D-like listlikes
+- [ ] **pandas/core/arrays/datetimelike.py:1480** - # TODO: Can we simplify/generalize these cases at all?
+- [ ] **pandas/core/arrays/datetimelike.py:1995** - # TODO: annotate other as DatetimeArray | TimedeltaArray | Timestamp | Timedelta
+- [ ] **pandas/core/arrays/datetimelike.py:2454** - # TODO: can we reuse is_date_array_normalized?  would need a skipna kwd
+- [ ] **pandas/core/arrays/datetimelike.py:2495** - # TODO: cases where we need to do another pass through maybe_convert_dtype,
+- [ ] **pandas/core/arrays/datetimes.py:725** - # TODO: preserve freq?
+- [ ] **pandas/core/arrays/datetimes.py:2667** - # TODO: We do not have tests specific to string-dtypes,
+- [ ] **pandas/core/arrays/datetimes.py:2763** - # TODO: better way to handle this?  non-copying alternative?
+- [ ] **pandas/core/arrays/datetimes.py:2771** - # TODO: if tz is UTC, are there situations where we *don't* want a
+- [ ] **pandas/core/arrays/datetimes.py:2895** - # TODO: We have no tests for these
+- [ ] **pandas/core/arrays/interval.py:843** - # TODO: in an IntervalIndex we can reuse the cached
+- [ ] **pandas/core/arrays/interval.py:847** - # TODO: other cases we can use lexsort for?  much more performant.
+- [ ] **pandas/core/arrays/interval.py:1948** - # TODO: should we just cast these to list?
+- [ ] **pandas/core/arrays/masked.py:405** - # TODO: get this all from np_can_hold_element?
+- [ ] **pandas/core/arrays/masked.py:416** - # TODO: unsigned checks
+- [ ] **pandas/core/arrays/masked.py:547** - # TODO: need to make sure we have the same order for data/mask
+- [ ] **pandas/core/arrays/masked.py:762** - # TODO deal with NaNs for FloatingArray case
+- [ ] **pandas/core/arrays/masked.py:765** - # TODO: Is rounding what we want long term?
+- [ ] **pandas/core/arrays/masked.py:930** - # TODO: need test for BooleanArray needing a copy
+- [ ] **pandas/core/arrays/masked.py:1028** - # TODO(GH#30188) ATM we don't match the behavior of non-masked
+- [ ] **pandas/core/arrays/masked.py:1224** - # TODO(jreback) what if we have a non-na float as a fill value?
+- [ ] **pandas/core/arrays/masked.py:1664** - # TODO(GH#40932): na_value_for_dtype(self.dtype.numpy_dtype)
+- [ ] **pandas/core/arrays/numpy_.py:409** - # TODO: assert we have floating dtype?
+- [ ] **pandas/core/arrays/period.py:1045** - # TODO: other cases?
+- [ ] **pandas/core/arrays/period.py:1236** - # TODO: can we de-duplicate with Period._add_timedeltalike_scalar?
+- [ ] **pandas/core/arrays/sparse/array.py:679** - # TODO: make kind=None, and use data.kind?
+- [ ] **pandas/core/arrays/sparse/array.py:705** - # TODO: disentangle the fill_value dtype inference from
+- [ ] **pandas/core/arrays/sparse/array.py:708** - # TODO: What should the empty dtype be? Object or float?
+- [ ] **pandas/core/arrays/sparse/array.py:733** - # TODO: avoid double copy when dtype forces cast.
+- [ ] **pandas/core/arrays/sparse/array.py:1716** - # TODO: wraparound
+- [ ] **pandas/core/arrays/sparse/array.py:2972** - # TODO: make this more flexible than just ndarray...
+- [ ] **pandas/core/arrays/sparse/array.py:3179** - # TODO: copy
+- [ ] **pandas/core/arrays/string_.py:239** - # TODO should dtype == "string" work for the NaN variant?
+- [ ] **pandas/core/arrays/string_.py:414** - # TODO(4.0): Once the deprecation here is enforced, this method can be
+- [ ] **pandas/core/arrays/string_.py:537** - # TODO: shouldn't this already be caught my passed mask?
+- [ ] **pandas/core/arrays/string_.py:593** - # TODO: we could alternatively do this check before map_infer_mask
+- [ ] **pandas/core/arrays/string_.py:751** - # TODO validate or force NA/None to NaN
+- [ ] **pandas/core/arrays/string_arrow.py:85** - # TODO: Inherit directly from BaseStringArrayMethods. Currently we inherit from
+- [ ] **pandas/core/arrays/timedeltas.py:525** - # TODO(numpy>=2.5): numpy detects this natively (numpy GH-31378)
+- [ ] **pandas/core/common.py:354** - # TODO: used only once in indexing; belongs elsewhere?
+- [ ] **pandas/core/computation/eval.py:84** - # TODO: validate this in a more general way (thinking of future engines
+- [ ] **pandas/core/computation/expr.py:553** - # TODO(py314): deprecated since Python 3.8. Remove after Python 3.14 is min
+- [ ] **pandas/core/computation/expr.py:557** - # TODO(py314): deprecated since Python 3.8. Remove after Python 3.14 is min
+- [ ] **pandas/core/computation/expr.py:564** - # TODO(py314): deprecated since Python 3.8. Remove after Python 3.14 is min
+- [ ] **pandas/core/computation/pytables.py:515** - # TODO: return None might never be reached
+- [ ] **pandas/core/construction.py:866** - # TODO: test cases with arr.dtype.kind in "mM"
+- [ ] **pandas/core/dtypes/cast.py:402** - # TODO: use tolerance like we do for float?
+- [ ] **pandas/core/dtypes/cast.py:447** - # TODO(GH#45349): don't special-case IntervalDtype, allow
+- [ ] **pandas/core/dtypes/cast.py:737** - # TODO: test with datetime(2920, 10, 1) based on test_replace_dtypes
+- [ ] **pandas/core/dtypes/cast.py:1105** - # TODO: _from_sequence would raise ValueError in cases where
+- [ ] **pandas/core/dtypes/cast.py:1162** - # TODO: ValueError or TypeError? existing test
+- [ ] **pandas/core/dtypes/cast.py:1170** - # TODO: other value-dependent functions to standardize here include
+- [ ] **pandas/core/dtypes/cast.py:1207** - # TODO: do we need to recreate numpy's inspection logic for floats too
+- [ ] **pandas/core/dtypes/cast.py:1260** - # TODO: more generally, could do `not can_hold_na(dtype)`
+- [ ] **pandas/core/dtypes/cast.py:1620** - # TODO(numpy-2.0 min): This case will raise an OverflowError above
+- [ ] **pandas/core/dtypes/cast.py:1626** - # TODO: can this be hit anymore after numpy 2.0?
+- [ ] **pandas/core/dtypes/cast.py:1639** - # TODO: Can this path be hit anymore with numpy > 2
+- [ ] **pandas/core/dtypes/cast.py:1759** - # TODO: general-case for EAs?
+- [ ] **pandas/core/dtypes/cast.py:1782** - # TODO: faster to check (element >=0).all()?  potential
+- [ ] **pandas/core/dtypes/cast.py:1816** - # TODO: itemsize check?
+- [ ] **pandas/core/dtypes/cast.py:1905** - # TODO: test tests.frame.methods.test_replace tests get here,
+- [ ] **pandas/core/dtypes/common.py:1893** - # TODO: warnings.catch_warnings can be removed when numpy>2.3.0
+- [ ] **pandas/core/dtypes/dtypes.py:224** - # TODO: Document public vs. private API
+- [ ] **pandas/core/dtypes/dtypes.py:512** - # TODO: hash_array doesn't handle mixed types. It casts
+- [ ] **pandas/core/dtypes/dtypes.py:694** - # TODO we should figure out the expected return value in general
+- [ ] **pandas/core/dtypes/dtypes.py:710** - # TODO should categorical always give an answer?
+- [ ] **pandas/core/dtypes/dtypes.py:929** - # TODO: update this.
+- [ ] **pandas/core/dtypes/dtypes.py:1071** - # TODO(3.0): enforcing this will close GH#10575
+- [ ] **pandas/core/dtypes/dtypes.py:2188** - # TODO for now only handle SparseDtypes and numpy dtypes => extend
+- [ ] **pandas/core/dtypes/dtypes.py:2336** - # TODO: Potentially change this & CategoricalDtype.type to
+- [ ] **pandas/core/dtypes/dtypes.py:2348** - # TODO: None? pd.NA? pa.null?
+- [ ] **pandas/core/dtypes/dtypes.py:2484** - # TODO(arrow#33642): This can be removed once supported by pyarrow
+- [ ] **pandas/core/dtypes/dtypes.py:2518** - # TODO: pa.types.is_boolean?
+- [ ] **pandas/core/dtypes/missing.py:448** - # TODO: fastpath for pandas' StringDtype
+- [ ] **pandas/core/frame.py:645** - # TODO(EA2D): special case not needed with 2D EAs
+- [ ] **pandas/core/frame.py:876** - # TODO(EA2D) special case would be unnecessary with 2D EAs
+- [ ] **pandas/core/frame.py:1794** - # TODO speed up Series case
+- [ ] **pandas/core/frame.py:3417** - # TODO: a generic formatter wld b in DataFrameFormatter
+- [ ] **pandas/core/frame.py:7678** - # TODO(EA2D): doing this in a loop unnecessary with 2D EAs
+- [ ] **pandas/core/frame.py:10305** - # TODO: The previous assertion `assert right._indexed_same(self)`
+- [ ] **pandas/core/frame.py:10441** - # TODO: any other cases we should handle here?
+- [ ] **pandas/core/frame.py:10450** - # TODO: is there a shortcut available when len(cols) == 0?
+- [ ] **pandas/core/frame.py:10615** - # TODO(EA2D): no need to special case with 2D EAs
+- [ ] **pandas/core/frame.py:13645** - # TODO: Support other joins
+- [ ] **pandas/core/frame.py:16440** - # TODO: also the ArrowDtype analogues?
+- [ ] **pandas/core/generic.py:5473** - # TODO: Decide if we care about having different examples for different
+- [ ] **pandas/core/generic.py:5595** - # TODO: speed up on homogeneous DataFrame objects (see _reindex_multi)
+- [ ] **pandas/core/generic.py:6745** - # TODO(EA2D): special case not needed with 2D EAs
+- [ ] **pandas/core/generic.py:10422** - # TODO(EA2D): could also do this for NDArrayBackedEA cases?
+- [ ] **pandas/core/generic.py:10440** - # TODO: can we use a zero-copy alternative to "repeat"?
+- [ ] **pandas/core/generic.py:11747** - # TODO(EA2D): special-case not needed
+- [ ] **pandas/core/groupby/generic.py:99** - # TODO(typing) the return value on this callable should be any *scalar*.
+- [ ] **pandas/core/groupby/generic.py:101** - # TODO: validate types on ScalarResult and move to _typing
+- [ ] **pandas/core/groupby/generic.py:1154** - # TODO: should we do this inside II?
+- [ ] **pandas/core/groupby/generic.py:2375** - # TODO: sure this is right?  we used to do this
+- [ ] **pandas/core/groupby/groupby.py:223** - # TODO: Better repr for GroupBy object
+- [ ] **pandas/core/groupby/groupby.py:948** - # TODO: can we reuse e.g. _reindex_non_unique?
+- [ ] **pandas/core/groupby/groupby.py:1508** - # TODO: Is this exactly right; see WrappedCythonOp get_result_dtype?
+- [ ] **pandas/core/groupby/groupby.py:1570** - # TODO: shouldn't min_count matter?
+- [ ] **pandas/core/groupby/groupby.py:1952** - # TODO(EA2D): reshape would not be necessary with 2D EAs
+- [ ] **pandas/core/groupby/groupby.py:2731** - # TODO: For DataFrames what if columns are mixed arrow/numpy/masked?
+- [ ] **pandas/core/groupby/groupby.py:5464** - # TODO(GH#23918): Remove this conditional for SeriesGroupBy when
+- [ ] **pandas/core/groupby/groupby.py:5741** - # TODO: Better way to find # of observed groups?
+- [ ] **pandas/core/groupby/grouper.py:354** - # TODO: What are we assuming about subsequent calls?
+- [ ] **pandas/core/groupby/grouper.py:397** - # TODO: why does putting na_position="first" fix datetimelike cases?
+- [ ] **pandas/core/groupby/grouper.py:513** - # TODO: can we unwrap this and get a tighter typing
+- [ ] **pandas/core/groupby/grouper.py:518** - # TODO: 2023-02-03 no test cases with len(newgrouper.groupings) > 1.
+- [ ] **pandas/core/groupby/grouper.py:551** - # TODO 2022-10-08 we only have one test that gets here and
+- [ ] **pandas/core/groupby/grouper.py:781** - # TODO: These if-block and else-block are almost same.
+- [ ] **pandas/core/groupby/ops.py:496** - # TODO: min_count
+- [ ] **pandas/core/groupby/ops.py:498** - # TODO: should rank take result_mask?
+- [ ] **pandas/core/groupby/ops.py:642** - # TODO: Would be more efficient to skip unobserved for transforms
+- [ ] **pandas/core/indexes/api.py:142** - # TODO: handle index names!
+- [ ] **pandas/core/indexes/api.py:250** - # TODO: this behavior is not tested (so may not be desired),
+- [ ] **pandas/core/indexes/api.py:266** - # TODO: what about Categorical[dt64]?
+- [ ] **pandas/core/indexes/base.py:1615** - # TODO: why do we need different justify for these cases?
+- [ ] **pandas/core/indexes/base.py:2673** - # TODO(ExtensionIndex): 3rd party EA might override?
+- [ ] **pandas/core/indexes/base.py:3510** - # TODO: algos.unique1d should preserve DTA/TDA
+- [ ] **pandas/core/indexes/base.py:4255** - # TODO(GH#50617): once Series.__[gs]etitem__ is removed we should be able
+- [ ] **pandas/core/indexes/base.py:4431** - # TODO: tests where passing `keep_order=not self._is_multi`
+- [ ] **pandas/core/indexes/base.py:5427** - # TODO(ExtensionIndex): remove special-case, just use self._values
+- [ ] **pandas/core/indexes/base.py:5930** - # TODO(infer_string) can we avoid this special case?
+- [ ] **pandas/core/indexes/base.py:6132** - # TODO: will be fixed when ExtensionArray.searchsorted() is fixed
+- [ ] **pandas/core/indexes/base.py:6453** - # TODO: if object, could use infer_dtype to preempt costly
+- [ ] **pandas/core/indexes/base.py:6461** - # TODO: get_indexer has fastpaths for both Categorical-self and
+- [ ] **pandas/core/indexes/base.py:6712** - # TODO: we dont have tests that get here
+- [ ] **pandas/core/indexes/base.py:6719** - # TODO: may need itemsize check if we have non-64-bit Indexes
+- [ ] **pandas/core/indexes/base.py:6815** - # TODO: this was written assuming we only get here with object-dtype,
+- [ ] **pandas/core/indexes/base.py:6834** - # TODO: if we are a MultiIndex, we can do better
+- [ ] **pandas/core/indexes/base.py:6971** - # TODO: De-duplicate with map, xref GH#32349
+- [ ] **pandas/core/indexes/base.py:7157** - # TODO: better place to do this?
+- [ ] **pandas/core/indexes/base.py:7489** - # TODO(__array_function__): special casing will be unnecessary
+- [ ] **pandas/core/indexes/base.py:7753** - # TODO: should set MultiIndex._can_hold_na = False?
+- [ ] **pandas/core/indexes/base.py:8350** - # TODO: Apply maybe_sequence_to_range to sequences?
+- [ ] **pandas/core/indexes/datetimelike.py:393** - # TODO: do this at the EA level?
+- [ ] **pandas/core/indexes/datetimelike.py:453** - # TODO: not reached in tests 2023-10-11
+- [ ] **pandas/core/indexes/datetimelike.py:676** - # TODO: com.asarray_tuplesafe shouldn't cast e.g. DatetimeArray
+- [ ] **pandas/core/indexes/datetimelike.py:1038** - # TODO bump this to stacklevel=2 in a future version
+- [ ] **pandas/core/indexes/datetimelike.py:1176** - # TODO(GH#41493): we cannot just do
+- [ ] **pandas/core/indexes/datetimelike.py:1313** - # TODO: do union on the reversed indexes?
+- [ ] **pandas/core/indexes/datetimes.py:107** - # TODO: If we knew what was going in to **d, we might be able to
+- [ ] **pandas/core/indexes/datetimes.py:1713** - # TODO: Also for fixed-offsets
+- [ ] **pandas/core/indexes/frozen.py:77** - # TODO: Consider deprecating these in favor of `union` (xref gh-15506)
+- [ ] **pandas/core/indexes/interval.py:1176** - # TODO: DO this in maybe_booleans_to_slice?
+- [ ] **pandas/core/indexes/interval.py:1650** - # TODO: arithmetic operations
+- [ ] **pandas/core/indexes/multi.py:3628** - # TODO: need is_valid_na_for_dtype(key, level_index.dtype)
+- [ ] **pandas/core/indexes/multi.py:3704** - # TODO: what if we have an IntervalIndex level?
+- [ ] **pandas/core/indexes/multi.py:3940** - # TODO: in some cases we still need to drop some levels,
+- [ ] **pandas/core/indexes/multi.py:3961** - # TODO: why?
+- [ ] **pandas/core/indexes/multi.py:4728** - # TODO: what if they both have np.nan for their names?
+- [ ] **pandas/core/indexes/range.py:1506** - # TODO: if other is a RangeIndex we may have more efficient options
+- [ ] **pandas/core/indexing.py:1111** - # TODO: other cases?  only one test gets here, and that is covered
+- [ ] **pandas/core/indexing.py:2907** - # TODO(EA): ExtensionBlock.setitem this causes issues with
+- [ ] **pandas/core/interchange/column.py:117** - # TODO: chunks are implemented now, probably this should return something
+- [ ] **pandas/core/interchange/column.py:367** - # TODO: this will need correcting
+- [ ] **pandas/core/interchange/column.py:409** - # TODO: maybe store as bit array to save space?..
+- [ ] **pandas/core/interchange/column.py:432** - # TODO: implement for other bit/byte masks?
+- [ ] **pandas/core/interchange/dataframe_protocol.py:410** - # TODO: not happy with Optional, but need to flag it may be expensive
+- [ ] **pandas/core/interchange/from_dataframe.py:507** - # TODO: No DLPack yet, so need to construct a new ndarray from the data pointer
+- [ ] **pandas/core/interchange/utils.py:139** - # TODO(infer_string) this should be LARGE_STRING for pyarrow storage,
+- [ ] **pandas/core/internals/blocks.py:378** - # TODO(EA2D): unnecessary with 2D EAs
+- [ ] **pandas/core/internals/blocks.py:729** - # TODO(CoW): Maybe split here as well into columns where mask has True
+- [ ] **pandas/core/internals/blocks.py:1643** - # TODO: also the ArrowDtype analogues?
+- [ ] **pandas/core/internals/blocks.py:1690** - # TODO(CoW): This is tricky, if parent block goes out of scope
+- [ ] **pandas/core/internals/blocks.py:1984** - # TODO(EA2D): reshape not needed with 2D EAs
+- [ ] **pandas/core/internals/blocks.py:2075** - # TODO(EA2D): override unnecessary with 2D EAs
+- [ ] **pandas/core/internals/blocks.py:2090** - # TODO(EA2D): unnecessary with 2D EAs
+- [ ] **pandas/core/internals/blocks.py:2124** - # TODO(EA2D): unnecessary with 2D EAs
+- [ ] **pandas/core/internals/blocks.py:2131** - # TODO: should we avoid getting here with DataFrame?
+- [ ] **pandas/core/internals/blocks.py:2143** - # TODO: ATM this doesn't work for iget/_slice, can we change that?
+- [ ] **pandas/core/internals/blocks.py:2146** - # TODO(EA2D): not needed with 2D EAs
+- [ ] **pandas/core/internals/blocks.py:2216** - # TODO(EA2D): won't be necessary with 2D EAs
+- [ ] **pandas/core/internals/blocks.py:2223** - # TODO(EA2D): won't be necessary with 2D EAs
+- [ ] **pandas/core/internals/blocks.py:2267** - # TODO: could cast to object depending on fill_value?
+- [ ] **pandas/core/internals/blocks.py:2451** - # TODO(EA2D): special case not needed with 2D EAs
+- [ ] **pandas/core/internals/blocks.py:2463** - # TODO(EA2D): special case unnecessary with 2D EAs
+- [ ] **pandas/core/internals/blocks.py:2477** - # TODO(EA2D): special case not needed with 2D EAs
+- [ ] **pandas/core/internals/blocks.py:2512** - # TODO(EA2D): https://github.com/pandas-dev/pandas/issues/23023
+- [ ] **pandas/core/internals/blocks.py:2543** - # TODO decide on read-only https://github.com/pandas-dev/pandas/issues/63099
+- [ ] **pandas/core/internals/concat.py:99** - # TODO: support more dtypes here.  This will be simpler once
+- [ ] **pandas/core/internals/concat.py:140** - # TODO(EA2D): special-casing not needed with 2D EAs
+- [ ] **pandas/core/internals/concat.py:302** - # TODO: in all extant test cases 2023-04-08 we have a slice here.
+- [ ] **pandas/core/internals/concat.py:349** - # TODO(EA2D): special case not needed if all EAs used HybridBlocks
+- [ ] **pandas/core/internals/construction.py:352** - # TODO: check len(values) == 0?
+- [ ] **pandas/core/internals/construction.py:512** - # TODO: check for length-zero range, in which case return int64 dtype?
+- [ ] **pandas/core/internals/construction.py:513** - # TODO: reuse anything in try_cast?
+- [ ] **pandas/core/internals/construction.py:792** - # TODO: is that an issue with numpy?
+- [ ] **pandas/core/internals/construction.py:1071** - # TODO: test(s) that get here
+- [ ] **pandas/core/internals/construction.py:1072** - # TODO: try to de-duplicate this convert function with
+- [ ] **pandas/core/internals/managers.py:131** - # TODO: https://github.com/pandas-dev/pandas/issues/22791
+- [ ] **pandas/core/internals/managers.py:254** - # TODO shallow copy remaining axis?
+- [ ] **pandas/core/internals/managers.py:367** - # TODO: Deprecate, usage in Dask
+- [ ] **pandas/core/internals/managers.py:710** - # TODO(CoW) need to return a shallow copy here?
+- [ ] **pandas/core/internals/managers.py:736** - # TODO shallow copy of axes?
+- [ ] **pandas/core/internals/managers.py:760** - # TODO: Should deep=True be respected for axes?
+- [ ] **pandas/core/internals/managers.py:791** - # TODO shallow copy is not needed here?
+- [ ] **pandas/core/internals/managers.py:849** - # TODO(CoW) need to handle CoW?
+- [ ] **pandas/core/internals/managers.py:949** - # TODO(EA2D): special casing unnecessary with 2D EAs
+- [ ] **pandas/core/internals/managers.py:1174** - # TODO: this could be wrong if blk.mgr_locs is not slice(None)-like;
+- [ ] **pandas/core/internals/managers.py:1199** - # TODO: use object dtype as workaround for non-performant
+- [ ] **pandas/core/internals/managers.py:1220** - # TODO(GH#38240) this will be unnecessary
+- [ ] **pandas/core/internals/managers.py:1260** - # TODO(CoW) making the arrays read-only might make this safer to use?
+- [ ] **pandas/core/internals/managers.py:1282** - # TODO(EA2D): special casing not needed with 2D EAs
+- [ ] **pandas/core/internals/managers.py:1336** - # TODO: fastest way to check this?
+- [ ] **pandas/core/internals/managers.py:1414** - # TODO(EA2D): special casing unnecessary with 2D EAs
+- [ ] **pandas/core/internals/managers.py:1707** - # TODO shallow copy columns?
+- [ ] **pandas/core/internals/managers.py:1840** - # TODO(EA2D): the combine will be unnecessary with 2D EAs
+- [ ] **pandas/core/internals/managers.py:2040** - # TODO relevant axis already shallow-copied at caller?
+- [ ] **pandas/core/internals/managers.py:2142** - # TODO(EA2D): ndim would be unnecessary with 2D EAs
+- [ ] **pandas/core/internals/managers.py:2202** - # TODO(CoW) in theory only need to track reference if new_array is a view
+- [ ] **pandas/core/internals/managers.py:2222** - # TODO this method is only used in groupby SeriesSplitter at the moment,
+- [ ] **pandas/core/internals/managers.py:2528** - # TODO: optimization potential in case all mgrs contain slices and
+- [ ] **pandas/core/internals/managers.py:2597** - # TODO: no tests get here, a handful would if we disabled
+- [ ] **pandas/core/internals/ops.py:97** - # TODO shallow copy axes?
+- [ ] **pandas/core/internals/ops.py:126** - # TODO(EA2D): with 2D EAs only this first clause would be needed
+- [ ] **pandas/core/missing.py:108** - # TODO: this should be done in an EA method?
+- [ ] **pandas/core/ops/array_ops.py:239** - # TODO: can remove this after dropping some future numpy version?
+- [ ] **pandas/core/ops/array_ops.py:284** - # TODO we should handle EAs consistently and move this check before the if/else
+- [ ] **pandas/core/ops/array_ops.py:331** - # TODO: make this treatment consistent across ops and classes.
+- [ ] **pandas/core/ops/array_ops.py:346** - # TODO: but not pd.NA?
+- [ ] **pandas/core/resample.py:548** - # TODO: test_resample_apply_with_additional_args fails if we go
+- [ ] **pandas/core/resample.py:3206** - # TODO: should we disallow non-DatetimeIndex?
+- [ ] **pandas/core/reshape/melt.py:651** - # TODO: anything else to catch?
+- [ ] **pandas/core/reshape/merge.py:488** - # TODO, should merge_pieces do this?
+- [ ] **pandas/core/reshape/merge.py:933** - # TODO: transformations??
+- [ ] **pandas/core/reshape/merge.py:1350** - # TODO: can we pin down take_left's type earlier?
+- [ ] **pandas/core/reshape/merge.py:1360** - # TODO: can we pin down take_right's type earlier?
+- [ ] **pandas/core/reshape/merge.py:2557** - # TODO: why do we do this for AsOfMerge but not the others?
+- [ ] **pandas/core/reshape/merge.py:2678** - # TODO: can we reuse a tolerance-conversion function from
+- [ ] **pandas/core/reshape/merge.py:2685** - # TODO: we have no test cases with PeriodDtype here; probably
+- [ ] **pandas/core/reshape/merge.py:2931** - # TODO: if either is a RangeIndex, we can likely factorize more efficiently?
+- [ ] **pandas/core/reshape/merge.py:3009** - # GH#23917 TODO: Needs tests for non-matching dtypes
+- [ ] **pandas/core/reshape/merge.py:3010** - # GH#23917 TODO: needs tests for case where lk is integer-dtype
+- [ ] **pandas/core/reshape/merge.py:3027** - # TODO: Remove when we have a Factorizer for Arrow
+- [ ] **pandas/core/reshape/pivot.py:395** - # TODO: can we avoid this?  this used to be handled by
+- [ ] **pandas/core/reshape/reshape.py:910** - # TODO(EA2D): won't need special case, can go through .values
+- [ ] **pandas/core/reshape/tile.py:562** - # TODO: handle mismatch between categorical label order and pandas.cut order.
+- [ ] **pandas/core/series.py:858** - # TODO bump this to stacklevel=2 in a future version
+- [ ] **pandas/core/series.py:971** - # TODO decide on read-only https://github.com/pandas-dev/pandas/issues/63099
+- [ ] **pandas/core/series.py:2369** - # TODO: integrate bottleneck
+- [ ] **pandas/core/series.py:2448** - # TODO: Add option for bins like value_counts()
+- [ ] **pandas/core/series.py:3926** - # TODO: try to match resos?
+- [ ] **pandas/core/series.py:7482** - # TODO: Different from DataFrame._align_for_op, list, tuple and ndarray
+- [ ] **pandas/core/series.py:7587** - # TODO: result should always be ArrayLike, but this fails for some
+- [ ] **pandas/core/strings/accessor.py:186** - # TODO: Dispatch all the methods
+- [ ] **pandas/core/strings/accessor.py:647** - # TODO: dispatch
+- [ ] **pandas/core/strings/accessor.py:2498** - # TODO: Add a similar _bytes interface.
+- [ ] **pandas/core/strings/accessor.py:3607** - # TODO: dispatch
+- [ ] **pandas/core/tools/datetimes.py:422** - # TODO: Combine with above if DTI/DTA supports Arrow timestamps
+- [ ] **pandas/core/tools/datetimes.py:1275** - # TODO: avoid this kludge.
+- [ ] **pandas/core/window/rolling.py:380** - # TODO: sure we want to overwrite results?
+- [ ] **pandas/core/window/rolling.py:398** - # TODO: why do we get here with e.g. MultiIndex?
+- [ ] **pandas/core/window/rolling.py:630** - # TODO: Could preserve correct dtypes in future
+
+## License
+
+The source licenses are retained at the repository root.
